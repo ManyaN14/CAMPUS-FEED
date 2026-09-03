@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Feed - Reports</title>
+
+    <link rel="stylesheet" href="person3.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a href="../index.html" class="brand">
+        Campus Feed
+    </a>
+
+    <nav>
+        <a href="reports.html" class="active">Reports</a>
+        <a href="monthly-report.html">Monthly Report</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <section class="page-heading">
+
+        <div>
+            <p class="eyebrow">ADMIN / INSIGHTS</p>
+
+            <h1>Reports Dashboard</h1>
+
+            <p>
+                Track campus issues, student support and resolution progress.
+            </p>
+        </div>
+
+        <button class="outline-btn" onclick="window.print()">
+            Print
+        </button>
+
+    </section>
+
+
+    <!-- Statistics -->
+
+    <section id="summaryCards" class="stats-grid">
+    </section>
+
+
+    <!-- Most supported issues -->
+
+    <section class="panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <h2>Most Supported Issues</h2>
+
+                <p>
+                    Issues receiving the highest student support.
+                </p>
+            </div>
+
+        </div>
+
+        <div id="topIssues" class="issue-list">
+        </div>
+
+    </section>
+
+
+    <!-- Category statistics -->
+
+    <section class="panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <h2>Issues by Category</h2>
+
+                <p>
+                    Understand which areas need the most attention.
+                </p>
+            </div>
+
+        </div>
+
+        <div id="categoryChart" class="bars">
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="person3.js"></script>
+
+</body>
+</html>
