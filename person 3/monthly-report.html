@@ -3,150 +3,141 @@
 
 <head>
 
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Campus Feed - Monthly Report</title>
+  <title>Campus Feed - Monthly Report</title>
 
-    <link rel="stylesheet" href="person3.css">
+  <link rel="stylesheet" href="person3.css">
 
 </head>
 
 
 <body>
 
+  <header class="topbar">
 
-<header class="topbar">
-
-    <a href="../index.html" class="brand">
-        Campus Feed
+    <a class="brand" href="../index.html">
+      Campus Feed
     </a>
 
     <nav>
 
-        <a href="reports.html">
-            Reports
-        </a>
+      <a href="reports.html">
+        Reports
+      </a>
 
-        <a href="monthly-report.html" class="active">
-            Monthly Report
-        </a>
+      <a href="monthly-report.html"
+         class="active">
+        Monthly Report
+      </a>
 
-        <a href="profile.html">
-            Profile
-        </a>
+      <a href="profile.html">
+        Profile
+      </a>
 
     </nav>
 
-</header>
+  </header>
 
 
-
-<main class="container">
+  <main class="container">
 
 
     <section class="page-heading">
 
-        <div>
+      <div>
 
-            <p class="eyebrow">
-                MONTHLY OVERVIEW
-            </p>
+        <p class="eyebrow">
+          MONTHLY OVERVIEW
+        </p>
 
-            <h1>
-                Campus Monthly Report
-            </h1>
+        <h1>
+          Campus Monthly Report
+        </h1>
 
-            <p>
-                A quick summary of campus feedback and issue activity.
-            </p>
+        <p>
+          A quick summary of campus feedback and issue activity.
+        </p>
 
-        </div>
+      </div>
 
 
-        <button
-            class="outline-btn"
-            onclick="window.print()">
+      <button
+        class="outline-btn"
+        onclick="window.print()">
 
-            Print Report
+        Print Report
 
-        </button>
+      </button>
 
     </section>
 
 
-
-    <!-- Monthly statistics -->
+    <!-- Monthly Statistics -->
 
     <section
-        id="monthlySummary"
-        class="stats-grid">
-
+      id="monthlySummary"
+      class="stats-grid">
     </section>
 
 
-
-    <!-- Top information -->
+    <!-- Top issue and category -->
 
     <section class="two-column">
 
 
-        <div class="panel">
+      <div class="panel">
 
-            <h2>
-                Top Issue
-            </h2>
+        <h2>
+          Top Issue
+        </h2>
 
-            <div id="monthlyTopIssue">
-            </div>
+        <div id="monthlyTopIssue"></div>
 
-        </div>
-
+      </div>
 
 
-        <div class="panel">
+      <div class="panel">
 
-            <h2>
-                Most Reported Category
-            </h2>
+        <h2>
+          Most Reported Category
+        </h2>
 
-            <div id="monthlyTopCategory">
-            </div>
+        <div id="monthlyTopCategory"></div>
 
-        </div>
+      </div>
 
 
     </section>
-
 
 
     <!-- Category breakdown -->
 
     <section class="panel">
 
-        <div class="panel-heading">
+      <div class="panel-heading">
 
-            <h2>
-                Category Breakdown
-            </h2>
+        <h2>
+          Category Breakdown
+        </h2>
 
-        </div>
+      </div>
 
-        <div
-            id="monthlyCategories"
-            class="bars">
-
-        </div>
+      <div
+        id="monthlyCategories"
+        class="bars">
+      </div>
 
     </section>
 
 
-</main>
+  </main>
 
 
-<script src="person3.js"></script>
+  <script src="person3.js"></script>
 
 </body>
 
