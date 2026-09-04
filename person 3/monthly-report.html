@@ -2,143 +2,170 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>Campus Feed - Monthly Report</title>
-
-  <link rel="stylesheet" href="person3.css">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Monthly Report · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
 </head>
-
 
 <body>
 
-  <header class="topbar">
+<header class="topbar">
 
-    <a class="brand" href="../index.html">
-      Campus Feed
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
     </a>
 
-    <nav>
+    <nav class="nav">
+
+      <a href="../person1/home.html">
+        Campus Feed
+      </a>
+
+      <a href="../person2/report.html">
+        Report Issue
+      </a>
 
       <a href="reports.html">
-        Reports
+        My Reports
       </a>
 
-      <a href="monthly-report.html"
-         class="active">
-        Monthly Report
-      </a>
-
-      <a href="profile.html">
-        Profile
+      <a class="active" href="monthly-report.html">
+        Insights
       </a>
 
     </nav>
 
-  </header>
+    <a
+      class="profile-chip"
+      href="profile.html"
+    >
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
+</header>
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+
+      <span class="eyebrow">
+        COMMUNITY INSIGHTS
+      </span>
+
+      <h1>
+        Campus pulse
+      </h1>
+
+      <p class="muted">
+        A simple monthly snapshot generated
+        from local demo data.
+      </p>
+
+    </div>
+
+  </div>
 
 
-  <main class="container">
+  <div
+    class="stats"
+    id="monthlyStats"
+  ></div>
 
 
-    <section class="page-heading">
+  <div class="detail-layout">
 
-      <div>
+    <section class="card">
 
-        <p class="eyebrow">
-          MONTHLY OVERVIEW
-        </p>
+      <h3>
+        Most reported categories
+      </h3>
 
-        <h1>
-          Campus Monthly Report
-        </h1>
-
-        <p>
-          A quick summary of campus feedback and issue activity.
-        </p>
-
-      </div>
-
-
-      <button
-        class="outline-btn"
-        onclick="window.print()">
-
-        Print Report
-
-      </button>
-
-    </section>
-
-
-    <!-- Monthly Statistics -->
-
-    <section
-      id="monthlySummary"
-      class="stats-grid">
-    </section>
-
-
-    <!-- Top issue and category -->
-
-    <section class="two-column">
-
-
-      <div class="panel">
-
-        <h2>
-          Top Issue
-        </h2>
-
-        <div id="monthlyTopIssue"></div>
-
-      </div>
-
-
-      <div class="panel">
-
-        <h2>
-          Most Reported Category
-        </h2>
-
-        <div id="monthlyTopCategory"></div>
-
-      </div>
-
+      <div id="categoryBars"></div>
 
     </section>
 
 
-    <!-- Category breakdown -->
+    <section class="card">
 
-    <section class="panel">
+      <h3>
+        Most supported issue
+      </h3>
 
-      <div class="panel-heading">
-
-        <h2>
-          Category Breakdown
-        </h2>
-
-      </div>
-
-      <div
-        id="monthlyCategories"
-        class="bars">
-      </div>
+      <div id="topIssue"></div>
 
     </section>
 
+  </div>
 
-  </main>
+
+  <div
+    class="card"
+    style="margin-top:18px"
+  >
+
+    <h3>
+      Community outcomes
+    </h3>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+
+        <b>
+          Students can report anonymously
+        </b>
+
+        <div class="muted">
+          Verified college identity stays separate
+          from the public profile.
+        </div>
+
+      </div>
 
 
-  <script src="person3.js"></script>
+      <div class="timeline-item">
+
+        <b>
+          Duplicates become support
+        </b>
+
+        <div class="muted">
+          Students join existing issues instead of
+          splitting the community voice.
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <b>
+          Resolved issues stay visible
+        </b>
+
+        <div class="muted">
+          Outcome history creates transparency
+          and accountability.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script src="../js/storage.js"></script>
+<script src="person3.js"></script>
 
 </body>
-
 </html>

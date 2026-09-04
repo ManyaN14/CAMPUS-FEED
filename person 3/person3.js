@@ -1,285 +1,422 @@
-// ==========================================
-// CAMPUS FEED - PERSON 3
-// REPORTS DASHBOARD
-// ==========================================
+const esc3 = value =>
+  String(value || "")
+    .replace(/[&<>"']/g, match => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[match]));
 
 
-// ------------------------------------------
-// LOAD DASHBOARD
-// ------------------------------------------
+/* MY REPORTS */
 
-function loadDashboard() {
+if (document.getElementById("reportStats")) {
 
-    const issues = getIssues();
+  const user =
+    CF.getUser();
 
-
-    // --------------------------------------
-    // TOTAL ISSUES
-    // --------------------------------------
-
-    const totalIssues =
-        issues.length;
+  const issues =
+    CF.getIssues().filter(
+      issue =>
+        issue.createdBy === user.username ||
+        CF.isSupported(issue.id)
+    );
 
 
-    // --------------------------------------
-    // ACTIVE ISSUES
-    // --------------------------------------
+  document.getElementById("reportStats").innerHTML = [
 
-    const activeIssues =
-        issues.filter(issue => {
+    [
+      "Your issues",
+      CF.getIssues()
+        .filter(
+          issue =>
+            issue.createdBy === user.username
+        )
+        .length
+    ],
 
-            const status =
-                String(issue.status || "")
-                    .toLowerCase();
+    [
+      "Supported",
+      CF.getIssues()
+        .filter(
+          issue =>
+            CF.isSupported(issue.id)
+        )
+        .length
+    ],
 
-            return (
-                status === "active" ||
-                status === "under review" ||
-                status === "open"
-            );
+    [
+      "Active",
+      issues.filter(
+        issue =>
+          issue.status === "Active"
+      ).length
+    ],
 
-        }).length;
+    [
+      "Resolved",
+      issues.filter(
+        issue =>
+          issue.status !== "Active"
+      ).length
+    ]
 
+  ]
+  .map(item => `
 
-    // --------------------------------------
-    // RESOLVED ISSUES
-    // --------------------------------------
+    <div class="stat-card">
 
-    const resolvedIssues =
-        issues.filter(issue => {
+      <small>
+        ${item[0]}
+      </small>
 
-            const status =
-                String(issue.status || "")
-                    .toLowerCase();
+      <strong>
+        ${item[1]}
+      </strong>
 
-            return status === "resolved";
+    </div>
 
-        }).length;
-
-
-    // --------------------------------------
-    // TOTAL SUPPORT
-    // --------------------------------------
-
-    const totalSupport =
-        issues.reduce((total, issue) => {
-
-            return total +
-                Number(issue.supporters || 0);
-
-        }, 0);
-
-
-    // --------------------------------------
-    // DISPLAY STATS
-    // --------------------------------------
-
-    document.getElementById("totalIssues")
-        .textContent = totalIssues;
-
-    document.getElementById("activeIssues")
-        .textContent = activeIssues;
-
-    document.getElementById("resolvedIssues")
-        .textContent = resolvedIssues;
-
-    document.getElementById("totalSupport")
-        .textContent = totalSupport;
+  `)
+  .join("");
 
 
-    // --------------------------------------
-    // TOP ISSUES
-    // --------------------------------------
+  document.getElementById("myRows").innerHTML =
+    issues.length
 
-    displayTopIssues(issues);
+      ? issues.map(issue => `
 
+          <tr>
 
-    // --------------------------------------
-    // CATEGORY STATS
-    // --------------------------------------
+            <td>
 
-    displayCategoryStats(issues);
+              <b>
+                ${esc3(issue.title)}
+              </b>
+
+              <br>
+
+              <span class="muted">
+                ${issue.location}
+              </span>
+
+            </td>
+
+            <td>
+              ${issue.category}
+            </td>
+
+            <td>
+              ♥ ${issue.supports}
+            </td>
+
+            <td>
+
+              <span
+                class="badge ${
+                  issue.status === "Resolved"
+                    ? "badge-resolved"
+                    : issue.status === "Community Verified"
+                      ? "badge-verified"
+                      : "badge-active"
+                }"
+              >
+                ${issue.status}
+              </span>
+
+            </td>
+
+            <td>
+
+              <a
+                class="text-link"
+                href="../person2/issue-details.html?id=${issue.id}"
+              >
+                View
+              </a>
+
+            </td>
+
+          </tr>
+
+        `).join("")
+
+      :
+
+      `
+        <tr>
+          <td colspan="5">
+            No activity yet.
+          </td>
+        </tr>
+      `;
 }
 
 
-// ------------------------------------------
-// MOST SUPPORTED ISSUES
-// ------------------------------------------
+/* MONTHLY INSIGHTS */
 
-function displayTopIssues(issues) {
+if (document.getElementById("monthlyStats")) {
 
-    const container =
-        document.getElementById("topIssues");
+  const issues =
+    CF.getIssues();
 
-    if (!issues.length) {
+  const totalSupport =
+    issues.reduce(
+      (total, issue) =>
+        total + issue.supports,
+      0
+    );
 
-        container.innerHTML = `
-            <p>No issues reported yet.</p>
-        `;
+  const active =
+    issues.filter(
+      issue =>
+        issue.status === "Active"
+    ).length;
 
-        return;
-    }
-
-
-    const sortedIssues =
-        [...issues].sort(
-            (a, b) =>
-                Number(b.supporters || 0) -
-                Number(a.supporters || 0)
-        );
-
-
-    const topIssues =
-        sortedIssues.slice(0, 5);
+  const resolved =
+    issues.filter(
+      issue =>
+        issue.status === "Resolved"
+    ).length;
 
 
-    container.innerHTML =
-        topIssues.map(issue => {
+  document.getElementById("monthlyStats").innerHTML = [
 
-            return `
+    ["Total issues", issues.length],
 
-                <div class="report-item">
+    ["Total support", totalSupport],
 
-                    <div>
+    ["Active", active],
 
-                        <h3>
-                            ${escapeHTML(issue.title)}
-                        </h3>
+    ["Resolved", resolved]
 
-                        <p>
-                            ${escapeHTML(
-                                issue.category || "Other"
-                            )}
-                        </p>
+  ]
+  .map(item => `
 
-                    </div>
+    <div class="stat-card">
 
-                    <strong>
-                        ${Number(
-                            issue.supporters || 0
-                        )}
-                        supporters
-                    </strong>
+      <small>
+        ${item[0]}
+      </small>
 
-                </div>
+      <strong>
+        ${item[1]}
+      </strong>
 
-            `;
+    </div>
 
-        }).join("");
+  `)
+  .join("");
+
+
+  const counts = {};
+
+  issues.forEach(issue => {
+
+    counts[issue.category] =
+      (counts[issue.category] || 0) + 1;
+
+  });
+
+
+  const max =
+    Math.max(...Object.values(counts));
+
+
+  document.getElementById("categoryBars").innerHTML =
+    Object.entries(counts)
+
+      .sort(
+        (a, b) =>
+          b[1] - a[1]
+      )
+
+      .map(([category, count]) => `
+
+        <div style="margin:15px 0">
+
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              font-size:13px
+            "
+          >
+
+            <b>
+              ${category}
+            </b>
+
+            <span>
+              ${count}
+            </span>
+
+          </div>
+
+          <div
+            style="
+              height:9px;
+              background:#edf2ef;
+              border-radius:99px;
+              margin-top:6px
+            "
+          >
+
+            <div
+              style="
+                width:${count / max * 100}%;
+                height:100%;
+                background:#087f45;
+                border-radius:99px
+              "
+            ></div>
+
+          </div>
+
+        </div>
+
+      `)
+      .join("");
+
+
+  const topIssue =
+    [...issues].sort(
+      (a, b) =>
+        b.supports - a.supports
+    )[0];
+
+
+  document.getElementById("topIssue").innerHTML = `
+
+    <h2>
+      ${esc3(topIssue.title)}
+    </h2>
+
+    <p class="muted">
+      ${topIssue.category}
+      ·
+      ${topIssue.location}
+    </p>
+
+    <div class="side-stat">
+
+      <strong>
+        ${topIssue.supports}
+      </strong>
+
+      <span class="muted">
+        students affected
+      </span>
+
+    </div>
+
+  `;
 }
 
 
-// ------------------------------------------
-// CATEGORY STATISTICS
-// ------------------------------------------
+/* PROFILE */
 
-function displayCategoryStats(issues) {
+if (document.getElementById("username")) {
 
-    const container =
-        document.getElementById("categoryStats");
+  const user =
+    CF.getUser();
 
 
-    if (!issues.length) {
+  document.getElementById("username").textContent =
+    user.username;
 
-        container.innerHTML = `
-            <p>No category data available.</p>
-        `;
+  document.getElementById("email").textContent =
+    user.email;
 
-        return;
-    }
-
-
-    const categories = {};
+  document.getElementById("usernameInput").value =
+    user.username;
 
 
-    issues.forEach(issue => {
+  document.getElementById("activity").innerHTML = `
 
-        const category =
-            issue.category || "Other";
+    <div class="list-row">
 
-        if (!categories[category]) {
-            categories[category] = 0;
+      <span>
+        Verified identity
+      </span>
+
+      <b>
+        ✓
+      </b>
+
+    </div>
+
+
+    <div class="list-row">
+
+      <span>
+        Issues supported
+      </span>
+
+      <b>
+        ${
+          CF.getIssues()
+            .filter(
+              issue =>
+                CF.isSupported(issue.id)
+            )
+            .length
         }
+      </b>
 
-        categories[category]++;
-
-    });
-
-
-    const sortedCategories =
-        Object.entries(categories)
-            .sort((a, b) => b[1] - a[1]);
+    </div>
 
 
-    const maxValue =
-        sortedCategories.length
-            ? sortedCategories[0][1]
-            : 1;
+    <div class="list-row">
+
+      <span>
+        Issues reported
+      </span>
+
+      <b>
+        ${
+          CF.getIssues()
+            .filter(
+              issue =>
+                issue.createdBy === user.username
+            )
+            .length
+        }
+      </b>
+
+    </div>
+
+  `;
 
 
-    container.innerHTML =
-        sortedCategories.map(
-            ([category, count]) => {
+  document.getElementById("saveProfile").onclick =
+    function() {
 
-                const percentage =
-                    (count / maxValue) * 100;
+      const username =
+        document
+          .getElementById("usernameInput")
+          .value
+          .trim() ||
+        "CampusExplorer";
 
-                return `
+      CF.setUser({
+        username
+      });
 
-                    <div class="category-row">
+      location.reload();
+    };
 
-                        <div class="category-header">
 
-                            <span>
-                                ${escapeHTML(category)}
-                            </span>
+  document.getElementById("resetDemo").onclick =
+    function() {
 
-                            <strong>
-                                ${count}
-                            </strong>
+      if (
+        confirm(
+          "Reset all local demo data?"
+        )
+      ) {
+        CF.reset();
+      }
 
-                        </div>
-
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                style="
-                                    width: ${percentage}%;
-                                ">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
+    };
 }
-
-
-// ------------------------------------------
-// SECURITY HELPER
-// ------------------------------------------
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-// ------------------------------------------
-// RUN WHEN PAGE LOADS
-// ------------------------------------------
-
-document.addEventListener(
-    "DOMContentLoaded",
-    loadDashboard
-);

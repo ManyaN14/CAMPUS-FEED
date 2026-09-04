@@ -2,187 +2,120 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Reports - Campus Feed</title>
-
-    <!-- GLOBAL CSS -->
-    <link rel="stylesheet" href="../css/global.css">
-
-    <!-- PERSON 3 CSS -->
-    <link rel="stylesheet" href="person3.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Reports · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
 </head>
 
 <body>
 
-<header class="navbar">
+<header class="topbar">
 
-    <div class="navbar-inner">
+  <div class="container topbar-inner">
 
-        <a href="../index.html" class="logo">
-            Campus Feed
-        </a>
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
 
-        <nav class="nav-links">
+    <nav class="nav">
 
-            <a href="../index.html">
-                Home
-            </a>
+      <a href="../person1/home.html">
+        Campus Feed
+      </a>
 
-            <a href="../person2/report.html">
-                Report Issue
-            </a>
+      <a href="../person2/report.html">
+        Report Issue
+      </a>
 
-            <a href="reports.html">
-                Reports
-            </a>
+      <a class="active" href="reports.html">
+        My Reports
+      </a>
 
-            <a href="monthly-report.html">
-                Monthly Report
-            </a>
+      <a href="monthly-report.html">
+        Insights
+      </a>
 
-            <a href="profile.html">
-                Profile
-            </a>
+    </nav>
 
-        </nav>
+    <a
+      class="profile-chip"
+      href="profile.html"
+    >
+      <span class="avatar">C</span>
+    </a>
 
-    </div>
+  </div>
 
 </header>
 
+<main class="page container">
 
-<main>
+  <div class="page-head">
 
-    <div class="container">
+    <div>
 
-        <div class="page-header">
+      <span class="eyebrow">
+        YOUR ACTIVITY
+      </span>
 
-            <h1>Reports Dashboard</h1>
+      <h1>
+        My reports
+      </h1>
 
-            <p>
-                Overview of issues reported by students.
-            </p>
-
-        </div>
-
-
-        <!-- STATISTICS -->
-
-        <section class="grid grid-4">
-
-            <div class="stat-card">
-
-                <h3>Total Issues</h3>
-
-                <div
-                    class="stat-number"
-                    id="totalIssues">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <h3>Active Issues</h3>
-
-                <div
-                    class="stat-number"
-                    id="activeIssues">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <h3>Resolved Issues</h3>
-
-                <div
-                    class="stat-number"
-                    id="resolvedIssues">
-                    0
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <h3>Total Support</h3>
-
-                <div
-                    class="stat-number"
-                    id="totalSupport">
-                    0
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <br>
-
-
-        <!-- MOST SUPPORTED -->
-
-        <section class="card">
-
-            <h2>Most Supported Issues</h2>
-
-            <br>
-
-            <div id="topIssues"></div>
-
-        </section>
-
-
-        <br>
-
-
-        <!-- CATEGORY -->
-
-        <section class="card">
-
-            <h2>Issues by Category</h2>
-
-            <br>
-
-            <div id="categoryStats"></div>
-
-        </section>
+      <p class="muted">
+        Issues you created or supported.
+      </p>
 
     </div>
 
+    <a
+      class="btn btn-primary"
+      href="../person2/report.html"
+    >
+      ＋ Report issue
+    </a>
+
+  </div>
+
+
+  <div
+    class="stats"
+    id="reportStats"
+  ></div>
+
+
+  <div class="card">
+
+    <div class="table-wrap">
+
+      <table class="data-table">
+
+        <thead>
+
+          <tr>
+            <th>Issue</th>
+            <th>Category</th>
+            <th>Support</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+
+        </thead>
+
+        <tbody id="myRows"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
 </main>
 
-
-<footer class="footer">
-
-    <p>
-        Campus Feed © 2026
-    </p>
-
-</footer>
-
-
-<!-- SHARED STORAGE MUST COME FIRST -->
-
 <script src="../js/storage.js"></script>
-
-<!-- PERSON 3 JS -->
-
 <script src="person3.js"></script>
 
 </body>
-
 </html>

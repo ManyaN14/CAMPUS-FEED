@@ -1,91 +1,60 @@
-# Campus Feed - Person 3
+# Campus Feed
 
-Person 3 is responsible for:
+Campus Feed is a beginner-friendly, API-free hackathon prototype for turning scattered campus complaints into one collective student voice.
 
-- Reports Dashboard
-- Monthly Report
-- Student Profile
-- Activity statistics
-- Issue statistics
-- Category breakdown
+## Structure
 
-## Files
+- `index.html` — landing page + college email/demo OTP verification
+- `css/global.css` — shared design system and responsive layout
+- `js/storage.js` — shared localStorage data layer
+- `person1/` — campus feed/home
+- `person2/` — reporting, duplicate detection, issue details and comments
+- `person3/` — reports, monthly insights and profile
 
-reports.html
-monthly-report.html
-profile.html
-person3.css
-person3.js
+## Run
 
-## How to Run
+No build step or backend is required.
 
-Open the Campus Feed project in VS Code.
+1. Download/extract the project.
+2. Open `index.html` in a browser.
+3. Enter any valid-looking email.
+4. Use demo OTP `123456`.
+5. Explore the connected pages.
 
-Install the Live Server extension.
+For the smoothest local demo, use VS Code Live Server or any simple static HTTP server.
 
-Right-click:
+## How it connects
 
-reports.html
+All pages load `js/storage.js`.
 
-and select:
+It stores:
 
-Open with Live Server
+- Issues
+- Support actions
+- Comments
+- Profile information
+- Issue status
 
-You can also test:
+in browser `localStorage`.
 
-monthly-report.html
+### Reporting
 
-profile.html
+Reporting creates a draft in `sessionStorage`, runs duplicate detection, and then creates the issue in the shared local data.
 
-## LocalStorage
+### Supporting
 
-No API is used.
+Clicking "I'm Also Affected" toggles the student's support and updates the support count.
 
-The project uses browser localStorage.
+### Comments
 
-Issues:
+Comments are stored against the individual issue ID.
 
-campusFeedIssues
+### Profile
 
-User:
+Profile information and activity are read from the same localStorage data.
 
-campusFeedUser
+### Insights
 
-## Person 2 Integration
+The insights page calculates statistics from the same issue dataset.
 
-Person 2 should use the same:
-
-campusFeedIssues
-
-localStorage key.
-
-Then issues created by Person 2 can appear in Person 3's dashboard.
-
-## Recommended Folder Structure
-
-Campus-Feed/
-
-    index.html
-
-    person1/
-
-        home.html
-        home.css
-        home.js
-
-    person2/
-
-        report.html
-        duplicate.html
-        issue-details.html
-        comments.html
-        report.css
-        report.js
-
-    person3/
-
-        reports.html
-        monthly-report.html
-        profile.html
-        person3.css
-        person3.js
+No API keys, backend, database or external dependencies are required.
