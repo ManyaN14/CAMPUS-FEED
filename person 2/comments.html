@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Campus Feed - Comments</title>
-<link rel="stylesheet" href="person2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Comments & Evidence · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
 </head>
+
 <body>
-<div class="page">
+
 <header class="topbar">
-<button class="back-btn" onclick="history.back()">←</button>
-<h1>Comments & Evidence</h1><div></div>
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+      <a href="../person1/home.html">
+        Campus Feed
+      </a>
+
+      <a href="report.html">
+        Report Issue
+      </a>
+
+      <a href="../person3/reports.html">
+        My Reports
+      </a>
+    </nav>
+
+  </div>
+
 </header>
-<main class="container">
-<div id="commentIssueSummary" class="issue-summary"></div>
-<div id="commentsList" class="comments-list"></div>
-<div class="comment-box">
-<textarea id="commentInput" rows="3" maxlength="300" placeholder="Add a comment anonymously..."></textarea>
-<button class="primary-btn" onclick="addComment()">Post Comment</button>
-</div>
+
+<main class="page container">
+
+  <div id="commentsPage"></div>
+
 </main>
-</div>
-<script src="person2.js"></script>
+
+<script src="../js/storage.js"></script>
+<script src="report.js"></script>
+
 </body>
 </html>

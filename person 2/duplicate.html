@@ -1,75 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Campus Feed - Similar Issue</title>
-<link rel="stylesheet" href="person2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Similar Issues · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
 </head>
+
 <body>
-<div class="page">
+
 <header class="topbar">
-<button class="back-btn" onclick="history.back()">←</button>
-<h1>Similar Issue Found</h1><div></div>
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+      <a href="../person1/home.html">Campus Feed</a>
+      <a class="active" href="report.html">Report Issue</a>
+      <a href="../person3/reports.html">My Reports</a>
+    </nav>
+
+    <a class="profile-chip" href="../person3/profile.html">
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
 </header>
-<main class="container">
-<div class="duplicate-icon">🔎</div>
-<h2 class="center">We found a similar issue!</h2>
-<p class="center muted">Supporting an existing issue helps the college see how many students are affected.</p>
-<div id="similarIssue"></div>
-<button class="primary-btn" onclick="supportExistingIssue()">Support Existing Issue</button>
-<button class="secondary-btn" onclick="createNewIssueFromDraft()">Create New Issue Anyway</button>
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">
+        DUPLICATE CHECK
+      </span>
+
+      <h1>We found similar issues.</h1>
+
+      <p class="muted">
+        Joining an existing issue gives it
+        a stronger collective voice.
+      </p>
+    </div>
+
+  </div>
+
+  <div
+    id="duplicateList"
+    class="issue-grid"
+  ></div>
+
+  <div
+    class="card"
+    style="
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px
+    "
+  >
+
+    <div>
+      <b>None of these are the same problem?</b>
+
+      <p class="muted" style="margin:3px 0">
+        Create a new issue and continue.
+      </p>
+    </div>
+
+    <button
+      id="newIssue"
+      class="btn btn-primary"
+    >
+      Create new issue
+    </button>
+
+  </div>
+
 </main>
-</div>
-<script src="person2.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", renderSimilarIssue);
 
-function similarityScore(draft, issue) {
- const a = (draft.title+" "+draft.description+" "+draft.location+" "+draft.category).toLowerCase();
- const b = (issue.title+" "+issue.description+" "+issue.location+" "+issue.category).toLowerCase();
- const wa = new Set(a.split(/\W+/).filter(w=>w.length>3));
- const wb = new Set(b.split(/\W+/).filter(w=>w.length>3));
- let common=0; wa.forEach(w=>{if(wb.has(w)) common++;});
- let score=common/Math.max(1,Math.min(wa.size,wb.size));
- if(draft.location.toLowerCase()===issue.location.toLowerCase()) score+=0.35;
- if(draft.category.toLowerCase()===issue.category.toLowerCase()) score+=0.15;
- return Math.min(score,1);
-}
+<script src="../js/storage.js"></script>
+<script src="report.js"></script>
 
-function renderSimilarIssue() {
- const draft=JSON.parse(localStorage.getItem(DRAFT_KEY)||"null");
- const issues=getIssues();
- const box=document.getElementById("similarIssue");
- if(!draft){box.innerHTML="<div class='empty-card'>No draft issue found.</div>";return;}
- let best=null,bestScore=0;
- issues.filter(i=>i.status!=="resolved").forEach(i=>{
-  const s=similarityScore(draft,i);
-  if(s>bestScore){bestScore=s;best=i;}
- });
- if(!best || bestScore<0.35){
-  box.innerHTML="<div class='new-issue-card'><div class='big-check'>✓</div><h3>No strong duplicate found</h3><p>Your issue looks different from existing campus issues.</p></div>";
-  return;
- }
- localStorage.setItem(SELECTED_KEY,String(best.id));
- box.innerHTML=`<div class="similar-card">
- <div class="similar-top"><div class="issue-icon">${best.icon||"📌"}</div>
- <div><span class="badge">${escapeHTML(best.category)}</span>
- <h3>${escapeHTML(best.title)}</h3><p>📍 ${escapeHTML(best.location)}</p></div></div>
- <p class="similar-description">${escapeHTML(best.description)}</p>
- <div class="support-count">👥 ${best.supporters} supporters</div>
- <div class="match">Similarity detected</div></div>`;
-}
-
-function supportExistingIssue(){
- const id=Number(localStorage.getItem(SELECTED_KEY)); const issues=getIssues();
- const issue=issues.find(i=>i.id===id); if(!issue)return;
- const user=getUser()||{username:"Anonymous Student",supported:[],reported:[],comments:[]};
- user.supported=user.supported||[];
- if(!user.supported.includes(id)){user.supported.push(id);issue.supporters++;}
- saveIssues(issues);saveUser(user);localStorage.removeItem(DRAFT_KEY);
- window.location.href="issue-details.html";
-}
-</script>
 </body>
 </html>

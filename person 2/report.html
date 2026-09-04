@@ -1,50 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Campus Feed - Report Issue</title>
-<link rel="stylesheet" href="person2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Report an Issue · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
 </head>
+
 <body>
-<div class="page">
+
 <header class="topbar">
-<button class="back-btn" onclick="goHome()">←</button>
-<h1>Report an Issue</h1><div></div>
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+      <a href="../person1/home.html">Campus Feed</a>
+      <a class="active" href="report.html">Report Issue</a>
+      <a href="../person3/reports.html">My Reports</a>
+      <a href="../person3/monthly-report.html">Insights</a>
+    </nav>
+
+    <a class="profile-chip" href="../person3/profile.html">
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
 </header>
-<main class="container">
-<div class="intro">
-<div class="intro-icon">📢</div>
-<h2>What should your college work upon?</h2>
-<p>Report a problem anonymously and help your campus become better.</p>
-</div>
-<form id="issueForm">
-<label>Category</label>
-<select id="category" required>
-<option value="">Select category</option>
-<option>Infrastructure</option><option>Cleanliness</option><option>Safety</option>
-<option>Academic</option><option>Hostel</option><option>Transport</option>
-<option>Food</option><option>Wi-Fi / Technology</option><option>Other</option>
-</select>
-<label>Severity</label>
-<select id="severity" required>
-<option value="">Select severity</option>
-<option>Safety Hazard</option><option>Inconvenience</option><option>Suggestion</option>
-</select>
-<label>Location</label>
-<input id="location" required placeholder="e.g. Block C, Library, Mess">
-<label>Issue Title</label>
-<input id="title" maxlength="80" required placeholder="e.g. Water cooler not working">
-<label>Description</label>
-<textarea id="description" rows="5" maxlength="500" required placeholder="Describe the problem..."></textarea>
-<label>Add Photos <span class="optional">(optional)</span></label>
-<input id="photoInput" type="file" accept="image/*" multiple>
-<div id="photoPreview" class="photo-preview"></div>
-<div id="formError" class="error"></div>
-<button class="primary-btn" type="submit">Check for Similar Issues</button>
-</form>
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">
+        REPORT A CAMPUS PROBLEM
+      </span>
+
+      <h1>Make your voice count.</h1>
+
+      <p class="muted">
+        Before publishing, we'll check whether
+        a similar issue already exists.
+      </p>
+    </div>
+
+  </div>
+
+  <form id="reportForm" class="card form-card">
+
+    <div class="notice">
+      Tip: specific locations and clear descriptions
+      make it easier for other students to support the issue.
+    </div>
+
+    <div class="form-grid" style="margin-top:18px">
+
+      <label class="field">
+        Issue title
+
+        <input
+          id="title"
+          required
+          placeholder="e.g. Water cooler not working in Block C"
+        >
+      </label>
+
+      <label class="field">
+        Category
+
+        <select id="category" required>
+          <option>Infrastructure</option>
+          <option>Safety Hazard</option>
+          <option>Cleanliness</option>
+          <option>Hostel</option>
+          <option>Water</option>
+          <option>Electricity</option>
+          <option>Mess</option>
+        </select>
+      </label>
+
+      <label class="field">
+        Location
+
+        <input
+          id="location"
+          required
+          placeholder="Block / room / area"
+        >
+      </label>
+
+      <label class="field">
+        Evidence URL
+        <span class="helper">(optional demo)</span>
+
+        <input
+          id="evidence"
+          placeholder="https://..."
+        >
+      </label>
+
+      <label class="field full">
+        What happened?
+
+        <textarea
+          id="description"
+          required
+          placeholder="Explain what is wrong, how long it has been happening and who is affected."
+        ></textarea>
+      </label>
+
+      <label class="field full">
+        <span>Post identity</span>
+
+        <select id="identity">
+          <option>Anonymous</option>
+          <option>CampusExplorer</option>
+        </select>
+      </label>
+
+    </div>
+
+    <div class="card-actions">
+
+      <a
+        class="btn btn-ghost"
+        href="../person1/home.html"
+      >
+        Cancel
+      </a>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >
+        Check for similar issues →
+      </button>
+
+    </div>
+
+  </form>
+
 </main>
-</div>
-<script src="person2.js"></script>
+
+<script src="../js/storage.js"></script>
+<script src="report.js"></script>
+
 </body>
 </html>
