@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Reports · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+
+      <a href="../person1/home.html">
+        Campus Feed
+      </a>
+
+      <a href="../person2/report.html">
+        Report Issue
+      </a>
+
+      <a class="active" href="reports.html">
+        My Reports
+      </a>
+
+      <a href="monthly-report.html">
+        Insights
+      </a>
+
+    </nav>
+
+    <a
+      class="profile-chip"
+      href="profile.html"
+    >
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
+</header>
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+
+      <span class="eyebrow">
+        YOUR ACTIVITY
+      </span>
+
+      <h1>
+        My reports
+      </h1>
+
+      <p class="muted">
+        Issues you created or supported.
+      </p>
+
+    </div>
+
+    <a
+      class="btn btn-primary"
+      href="../person2/report.html"
+    >
+      ＋ Report issue
+    </a>
+
+  </div>
+
+
+  <div
+    class="stats"
+    id="reportStats"
+  ></div>
+
+
+  <div class="card">
+
+    <div class="table-wrap">
+
+      <table class="data-table">
+
+        <thead>
+
+          <tr>
+            <th>Issue</th>
+            <th>Category</th>
+            <th>Support</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+
+        </thead>
+
+        <tbody id="myRows"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script src="../js/storage.js"></script>
+<script src="person3.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Profile · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+
+      <a href="../person1/home.html">
+        Campus Feed
+      </a>
+
+      <a href="../person2/report.html">
+        Report Issue
+      </a>
+
+      <a href="reports.html">
+        My Reports
+      </a>
+
+      <a href="monthly-report.html">
+        Insights
+      </a>
+
+    </nav>
+
+    <a
+      class="profile-chip"
+      href="profile.html"
+    >
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
+</header>
+
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+
+      <span class="eyebrow">
+        YOUR IDENTITY
+      </span>
+
+      <h1>
+        Anonymous profile
+      </h1>
+
+      <p class="muted">
+        Your verified college email is used only
+        for identity verification in this prototype.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="profile">
+
+    <section class="card profile-card">
+
+      <div class="avatar">
+        C
+      </div>
+
+      <h2 id="username"></h2>
+
+      <p
+        class="muted"
+        id="email"
+      ></p>
+
+      <span class="badge badge-verified">
+        ✓ College verified
+      </span>
+
+
+      <div style="margin-top:20px">
+
+        <label class="field">
+
+          Username
+
+          <input id="usernameInput">
+
+        </label>
+
+        <button
+          id="saveProfile"
+          class="btn btn-primary"
+          style="width:100%;margin-top:10px"
+        >
+          Save profile
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h3>
+        My activity
+      </h3>
+
+      <div
+        class="list"
+        id="activity"
+      ></div>
+
+
+      <hr
+        style="
+          border:0;
+          border-top:1px solid #e6ece8;
+          margin:22px 0
+        "
+      >
+
+
+      <button
+        id="resetDemo"
+        class="btn btn-danger"
+      >
+        Reset demo data
+      </button>
+
+      <p class="helper">
+        This clears localStorage and restores
+        the sample campus issues.
+      </p>
+
+    </section>
+
+  </div>
+
+</main>
+
+<script src="../js/storage.js"></script>
+<script src="person3.js"></script>
+
+</body>
+</html>
