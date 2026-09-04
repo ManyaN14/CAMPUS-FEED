@@ -1,60 +1,60 @@
-# Campus Feed
+# CAMPUS FEED
 
-Campus Feed is a beginner-friendly, API-free hackathon prototype for turning scattered campus complaints into one collective student voice.
+## 🔗 SUBMISSION LINKS
 
-## Structure
+**Live Website:**  
+ https://manyan14.github.io/CAMPUS-FEED/
 
-- `index.html` — landing page + college email/demo OTP verification
-- `css/global.css` — shared design system and responsive layout
-- `js/storage.js` — shared localStorage data layer
-- `person1/` — campus feed/home
-- `person2/` — reporting, duplicate detection, issue details and comments
-- `person3/` — reports, monthly insights and profile
+**GitHub Repository:**  
+https://github.com/ManyaN14/CAMPUS-FEED.git
 
-## Run
+**Source Code:**  
+Available in this submission folder and GitHub repository.
 
-No build step or backend is required.
+## 📌 About the Project
 
-1. Download/extract the project.
-2. Open `index.html` in a browser.
-3. Enter any valid-looking email.
-4. Use demo OTP `123456`.
-5. Explore the connected pages.
+Campus Feed is a student-focused platform for reporting,
+supporting, tracking, and resolving campus issues.
 
-For the smoothest local demo, use VS Code Live Server or any simple static HTTP server.
+Students can report problems such as:
+- Broken infrastructure
+- Wi-Fi issues
+- Cleanliness
+- Hostel problems
+- Mess issues
+- Water/electricity problems
+- Safety concerns
 
-## How it connects
+## ✨ Features
 
-All pages load `js/storage.js`.
+- Student issue reporting
+- Duplicate issue detection
+- "I'm Also Affected" support
+- Issue details and comments
+- Evidence/photos
+- Issue status tracking
+- Reports and insights
+- Student profile
 
-It stores:
+## 🛠️ Technologies Used
 
-- Issues
-- Support actions
-- Comments
-- Profile information
-- Issue status
+- HTML
+- CSS
+- JavaScript
+- LocalStorage
+- GitHub Pages
 
-in browser `localStorage`.
+## 🚀 How to Run Locally
 
-### Reporting
+1. Download/clone the repository.
+2. Open the project in VS Code.
+3. Open `index.html` using Live Server.
+4. Start using the website.
 
-Reporting creates a draft in `sessionStorage`, runs duplicate detection, and then creates the issue in the shared local data.
+## 👥 Project Structure
 
-### Supporting
-
-Clicking "I'm Also Affected" toggles the student's support and updates the support count.
-
-### Comments
-
-Comments are stored against the individual issue ID.
-
-### Profile
-
-Profile information and activity are read from the same localStorage data.
-
-### Insights
-
-The insights page calculates statistics from the same issue dataset.
-
-No API keys, backend, database or external dependencies are required.
+- `person1/` — Home/Campus Feed
+- `person2/` — Issue reporting and issue management
+- `person3/` — Reports, insights and profile
+- `css/` — Shared styling
+- `js/` — Shared storage functionality
