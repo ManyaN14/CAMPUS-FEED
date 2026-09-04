@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Similar Issues · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+      <a href="../person1/home.html">Campus Feed</a>
+      <a class="active" href="report.html">Report Issue</a>
+      <a href="../person3/reports.html">My Reports</a>
+    </nav>
+
+    <a class="profile-chip" href="../person3/profile.html">
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
+</header>
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">
+        DUPLICATE CHECK
+      </span>
+
+      <h1>We found similar issues.</h1>
+
+      <p class="muted">
+        Joining an existing issue gives it
+        a stronger collective voice.
+      </p>
+    </div>
+
+  </div>
+
+  <div
+    id="duplicateList"
+    class="issue-grid"
+  ></div>
+
+  <div
+    class="card"
+    style="
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px
+    "
+  >
+
+    <div>
+      <b>None of these are the same problem?</b>
+
+      <p class="muted" style="margin:3px 0">
+        Create a new issue and continue.
+      </p>
+    </div>
+
+    <button
+      id="newIssue"
+      class="btn btn-primary"
+    >
+      Create new issue
+    </button>
+
+  </div>
+
+</main>
+
+<script src="../js/storage.js"></script>
+<script src="report.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Report an Issue · Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="container topbar-inner">
+
+    <a class="brand" href="../person1/home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
+
+    <nav class="nav">
+      <a href="../person1/home.html">Campus Feed</a>
+      <a class="active" href="report.html">Report Issue</a>
+      <a href="../person3/reports.html">My Reports</a>
+      <a href="../person3/monthly-report.html">Insights</a>
+    </nav>
+
+    <a class="profile-chip" href="../person3/profile.html">
+      <span class="avatar">C</span>
+    </a>
+
+  </div>
+
+</header>
+
+<main class="page container">
+
+  <div class="page-head">
+
+    <div>
+      <span class="eyebrow">
+        REPORT A CAMPUS PROBLEM
+      </span>
+
+      <h1>Make your voice count.</h1>
+
+      <p class="muted">
+        Before publishing, we'll check whether
+        a similar issue already exists.
+      </p>
+    </div>
+
+  </div>
+
+  <form id="reportForm" class="card form-card">
+
+    <div class="notice">
+      Tip: specific locations and clear descriptions
+      make it easier for other students to support the issue.
+    </div>
+
+    <div class="form-grid" style="margin-top:18px">
+
+      <label class="field">
+        Issue title
+
+        <input
+          id="title"
+          required
+          placeholder="e.g. Water cooler not working in Block C"
+        >
+      </label>
+
+      <label class="field">
+        Category
+
+        <select id="category" required>
+          <option>Infrastructure</option>
+          <option>Safety Hazard</option>
+          <option>Cleanliness</option>
+          <option>Hostel</option>
+          <option>Water</option>
+          <option>Electricity</option>
+          <option>Mess</option>
+        </select>
+      </label>
+
+      <label class="field">
+        Location
+
+        <input
+          id="location"
+          required
+          placeholder="Block / room / area"
+        >
+      </label>
+
+      <label class="field">
+        Evidence URL
+        <span class="helper">(optional demo)</span>
+
+        <input
+          id="evidence"
+          placeholder="https://..."
+        >
+      </label>
+
+      <label class="field full">
+        What happened?
+
+        <textarea
+          id="description"
+          required
+          placeholder="Explain what is wrong, how long it has been happening and who is affected."
+        ></textarea>
+      </label>
+
+      <label class="field full">
+        <span>Post identity</span>
+
+        <select id="identity">
+          <option>Anonymous</option>
+          <option>CampusExplorer</option>
+        </select>
+      </label>
+
+    </div>
+
+    <div class="card-actions">
+
+      <a
+        class="btn btn-ghost"
+        href="../person1/home.html"
+      >
+        Cancel
+      </a>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >
+        Check for similar issues →
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+<script src="../js/storage.js"></script>
+<script src="report.js"></script>
+
+</body>
+</html>
