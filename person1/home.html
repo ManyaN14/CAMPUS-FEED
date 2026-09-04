@@ -1,746 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <!-- Makes the website responsive on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Campus Feed</title>
 
-    <!-- Connect CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- Person 1 CSS -->
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         SCREEN 1 : WELCOME SCREEN
-    ====================================================== -->
-
-    <section id="welcomeScreen" class="screen active">
-
-        <div class="welcome-card">
-
-            <div class="brand">
-                CAMPUS <span>FEED</span>
-            </div>
-
-            <p class="tagline">
-                Your campus. Your voice.<br>
-                Together we make it better.
-            </p>
-
-            <div class="illustration">
-                <div class="person p1">👩🏻</div>
-                <div class="person p2">👨🏻</div>
-                <div class="person p3">👩🏽</div>
-            </div>
-
-            <button
-                class="primary-btn"
-                onclick="showScreen('emailScreen')">
-                Get Started
-            </button>
-
-            <button
-                class="secondary-btn"
-                onclick="showScreen('emailScreen')">
-                Log In
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SCREEN 2 : COLLEGE EMAIL VERIFICATION
-    ====================================================== -->
-
-    <section id="emailScreen" class="screen">
-
-        <div class="auth-card">
-
-            <button
-                class="back"
-                onclick="showScreen('welcomeScreen')">
-                ←
-            </button>
-
-            <div class="icon-circle">
-                ✉
-            </div>
-
-            <h1>
-                Verify your college email
-            </h1>
-
-            <p>
-                Use your college email to join
-                the campus community.
-            </p>
-
-            <label for="emailInput">
-                College email ID
-            </label>
-
-            <input
-                id="emailInput"
-                type="email"
-                placeholder="yourname@igdtuw.ac.in"
-            >
-
-            <p
-                id="emailError"
-                class="error">
-            </p>
-
-            <button
-                class="primary-btn"
-                onclick="sendOTP()">
-                Send OTP
-            </button>
-
-            <small>
-                Your email is used only for verification.
-                Your identity stays anonymous.
-            </small>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SCREEN 3 : OTP VERIFICATION
-    ====================================================== -->
-
-    <section id="otpScreen" class="screen">
-
-        <div class="auth-card">
-
-            <button
-                class="back"
-                onclick="showScreen('emailScreen')">
-                ←
-            </button>
-
-            <div class="icon-circle">
-                🔐
-            </div>
-
-            <h1>
-                Enter OTP
-            </h1>
-
-            <p>
-                Enter the 6-digit OTP sent to
-                <br>
-
-                <strong id="emailPreview">
-                </strong>
-            </p>
-
-
-            <!-- OTP boxes -->
-
-            <div class="otp-row">
-
-                <input
-                    maxlength="1"
-                    class="otp"
-                    inputmode="numeric">
-
-                <input
-                    maxlength="1"
-                    class="otp"
-                    inputmode="numeric">
-
-                <input
-                    maxlength="1"
-                    class="otp"
-                    inputmode="numeric">
-
-                <input
-                    maxlength="1"
-                    class="otp"
-                    inputmode="numeric">
-
-                <input
-                    maxlength="1"
-                    class="otp"
-                    inputmode="numeric">
-
-                <input
-                    maxlength="1"
-                    class="otp"
-                    inputmode="numeric">
-
-            </div>
-
-
-            <!-- Demo information -->
-
-            <p class="demo-note">
-                Demo OTP:
-                <strong>123456</strong>
-            </p>
-
-
-            <p
-                id="otpError"
-                class="error">
-            </p>
-
-
-            <button
-                class="primary-btn"
-                onclick="verifyOTP()">
-                Verify
-            </button>
-
-
-            <button
-                class="text-btn"
-                onclick="sendOTP()">
-                Resend OTP
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SCREEN 4 : COMMUNITY JOINED
-    ====================================================== -->
-
-    <section id="joinedScreen" class="screen">
-
-        <div class="auth-card">
-
-            <div class="success-icon">
-                ✓
-            </div>
-
-            <h1>
-                Welcome to
-                <br>
-
-                <span class="green">
-                    IGDTUW Community!
-                </span>
-            </h1>
-
-
-            <!-- Temporary college logo -->
-
-            <div class="college-logo">
-                IGDTUW
-            </div>
-
-
-            <p class="success-message">
-
-                Your college email has been verified.
-
-                <br>
-
-                You are now part of the community.
-
-            </p>
-
-
-            <button
-                class="primary-btn"
-                onclick="showScreen('profileSetupScreen')">
-
-                Continue
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SCREEN 5 : CREATE ANONYMOUS PROFILE
-    ====================================================== -->
-
-    <section id="profileSetupScreen" class="screen">
-
-        <div class="auth-card">
-
-            <div class="icon-circle">
-                ♙
-            </div>
-
-
-            <h1>
-                Create your anonymous profile
-            </h1>
-
-
-            <p>
-                Your real identity stays private
-                to other students.
-            </p>
-
-
-            <label for="usernameInput">
-                Choose a username
-            </label>
-
-
-            <input
-                id="usernameInput"
-                type="text"
-                maxlength="25"
-                placeholder="CampusExplorer"
-            >
-
-
-            <p
-                id="usernameError"
-                class="error">
-            </p>
-
-
-            <button
-                class="primary-btn"
-                onclick="createProfile()">
-
-                Continue
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SCREEN 6 : HOME / DASHBOARD
-    ====================================================== -->
-
-    <section id="homeScreen" class="app-screen">
-
-        <!-- TOP BAR -->
-
-        <header class="topbar">
-
-            <div>
-
-                <div class="community-title">
-                    🟩 IGDTUW Community
+    <!-- =========================
+         HOME SCREEN
+    ========================== -->
+    <div id="homeScreen" class="screen active">
+
+        <!-- Header -->
+        <header class="top-header">
+            <div class="header-content">
+
+                <div class="logo-area">
+                    <div class="logo-icon">🎓</div>
+
+                    <div>
+                        <h1>Campus Feed</h1>
+                        <p>Make your campus better</p>
+                    </div>
                 </div>
-
-                <div class="welcome-user">
-
-                    Hi,
-                    <span id="homeUsername">
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="notification">
-
-                🔔
-
-                <span>
-                    3
-                </span>
-
-            </div>
-
-        </header>
-
-
-        <!-- SEARCH BAR -->
-
-        <div class="search-wrap">
-
-            <input
-                id="searchInput"
-                type="search"
-                placeholder="Search issues, locations..."
-                oninput="renderIssues()"
-            >
-
-        </div>
-
-
-        <!-- FILTERS -->
-
-        <div class="filters">
-
-            <button
-                class="filter active"
-                data-filter="trending"
-                onclick="setFilter('trending', this)">
-
-                🔥 Trending
-
-            </button>
-
-
-            <button
-                class="filter"
-                data-filter="active"
-                onclick="setFilter('active', this)">
-
-                🟡 Active
-
-            </button>
-
-
-            <button
-                class="filter"
-                data-filter="resolved"
-                onclick="setFilter('resolved', this)">
-
-                🟢 Resolved
-
-            </button>
-
-
-            <button
-                class="filter"
-                data-filter="suggestions"
-                onclick="setFilter('suggestions', this)">
-
-                💡 Suggestions
-
-            </button>
-
-        </div>
-
-
-        <!-- ISSUE LIST -->
-
-        <main class="content">
-
-            <div class="section-heading">
-
-                <h2 id="issueHeading">
-                    Trending Issues
-                </h2>
-
 
                 <button
-                    class="view-all"
-                    onclick="setFilter('all', null)">
-
-                    View all
-
+                    class="profile-icon"
+                    onclick="goToProfile()"
+                    aria-label="Open profile">
+                    ♙
                 </button>
 
             </div>
+        </header>
 
 
-            <!-- JavaScript will insert issues here -->
+        <!-- Main Content -->
+        <main class="home-content">
 
-            <div id="issueList">
-            </div>
+            <!-- Welcome -->
+            <section class="welcome-section">
+                <h2>What's happening on campus?</h2>
+                <p>
+                    Discover issues, support your classmates,
+                    and help improve campus life.
+                </p>
+            </section>
+
+
+            <!-- Search -->
+            <section class="search-section">
+
+                <div class="search-box">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search campus issues..."
+                        oninput="renderIssues()">
+
+                </div>
+
+            </section>
+
+
+            <!-- Filter Buttons -->
+            <section class="filter-section">
+
+                <button
+                    class="filter-btn active"
+                    onclick="filterIssues('all', this)">
+                    All
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterIssues('Infrastructure', this)">
+                    Infrastructure
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterIssues('Wi-Fi / Technology', this)">
+                    Technology
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterIssues('Safety', this)">
+                    Safety
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterIssues('Other', this)">
+                    Other
+                </button>
+
+            </section>
+
+
+            <!-- Issues -->
+            <section class="issues-section">
+
+                <div class="section-heading">
+                    <h2>Campus Issues</h2>
+
+                    <span id="issueCount">
+                        0 issues
+                    </span>
+                </div>
+
+
+                <!-- JavaScript renders issues here -->
+                <div id="issueList"></div>
+
+            </section>
 
         </main>
 
 
-        <!-- BOTTOM NAVIGATION -->
-
+        <!-- =========================
+             BOTTOM NAVIGATION
+        ========================== -->
         <nav class="bottom-nav">
 
-
-            <!-- HOME -->
-
+            <!-- Home -->
             <button
                 class="nav-item active"
-                onclick="showScreen('homeScreen')">
+                onclick="goHome()">
 
-                ⌂
-
-                <span>
-                    Home
-                </span>
+                <span class="nav-icon">⌂</span>
+                <span>Home</span>
 
             </button>
 
 
-            <!-- REPORT -->
-
+            <!-- REPORT - PERSON 2 -->
             <button
                 class="nav-item"
-                onclick="alert('Person 2 will connect the Report page here.')">
+                onclick="goToReport()">
 
-                ＋
-
-                <span>
-                    Report
-                </span>
+                <span class="nav-icon">＋</span>
+                <span>Report</span>
 
             </button>
 
 
-            <!-- REPORTS -->
-
+            <!-- REPORTS - PERSON 3 -->
             <button
                 class="nav-item"
-                onclick="showReportsPlaceholder()">
+                onclick="goToReports()">
 
-                ▣
-
-                <span>
-                    Reports
-                </span>
+                <span class="nav-icon">▣</span>
+                <span>Reports</span>
 
             </button>
 
 
-            <!-- PROFILE -->
-
+            <!-- PROFILE - PERSON 3 -->
             <button
                 class="nav-item"
-                onclick="showScreen('profileScreen')">
+                onclick="goToProfile()">
 
-                ♙
-
-                <span>
-                    Profile
-                </span>
+                <span class="nav-icon">♙</span>
+                <span>Profile</span>
 
             </button>
 
         </nav>
 
-    </section>
+    </div>
 
 
-    <!-- =====================================================
-         SCREEN 13 : PROFILE / MY ACTIVITY
-    ====================================================== -->
+    <!-- =========================
+         PROFILE SCREEN
+         Optional local preview
+    ========================== -->
+    <div id="profileScreen" class="screen">
 
-    <section id="profileScreen" class="app-screen">
+        <header class="top-header">
 
+            <div class="header-content">
 
-        <!-- PROFILE HEADER -->
+                <div class="logo-area">
 
-        <header class="topbar">
+                    <div class="logo-icon">
+                        🎓
+                    </div>
 
-            <button
-                class="back"
-                onclick="showScreen('homeScreen')">
+                    <div>
+                        <h1>Campus Feed</h1>
+                        <p>Profile</p>
+                    </div>
 
-                ←
+                </div>
 
-            </button>
-
-
-            <h2>
-                My Profile
-            </h2>
-
-
-            <button
-                class="settings"
-                onclick="alert('Settings can be added later.')">
-
-                ⚙
-
-            </button>
+            </div>
 
         </header>
 
-
-        <!-- PROFILE CONTENT -->
 
         <main class="profile-content">
 
+            <div class="profile-card">
 
-            <!-- Avatar -->
+                <div class="large-profile-icon">
+                    ♙
+                </div>
 
-            <div class="profile-avatar">
+                <h2 id="profileName">
+                    Student
+                </h2>
 
-                ♙
+                <p id="profileEmail">
+                    student@college.edu
+                </p>
 
             </div>
 
 
-            <!-- Username -->
-
-            <h2 id="profileUsername">
-            </h2>
-
-
-            <p class="muted">
-
-                IGDTUW Community
-
-            </p>
-
-
-            <!-- STATISTICS -->
-
-            <div class="stats">
-
-
-                <div>
-
-                    <strong id="reportedCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Issues Reported
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong id="supportedCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Issues Supported
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong id="commentCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Comments
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- PROFILE MENU -->
-
-            <div class="menu-list">
-
+            <div class="profile-actions">
 
                 <button
-                    onclick="alert('Person 2 will connect reported issues here.')">
+                    class="profile-action-btn"
+                    onclick="goToReports()">
 
-                    📄 My Reported Issues
+                    <span>▣</span>
 
-                    <span>
-                        ›
-                    </span>
+                    <div>
+                        <strong>My Reports</strong>
+                        <small>View your reports and activity</small>
+                    </div>
 
                 </button>
 
 
                 <button
-                    onclick="alert('Supported issue list will be connected later.')">
+                    class="profile-action-btn"
+                    onclick="goToReport()">
 
-                    ♡ My Supported Issues
+                    <span>＋</span>
 
-                    <span>
-                        ›
-                    </span>
-
-                </button>
-
-
-                <button
-                    onclick="alert('Comments will be connected later.')">
-
-                    💬 My Comments
-
-                    <span>
-                        ›
-                    </span>
+                    <div>
+                        <strong>Report an Issue</strong>
+                        <small>Tell us about a campus problem</small>
+                    </div>
 
                 </button>
-
-
-                <button
-                    onclick="alert('Saved issues will be connected later.')">
-
-                    🔖 Saved Issues
-
-                    <span>
-                        ›
-                    </span>
-
-                </button>
-
-
-                <button
-                    onclick="alert('Settings placeholder.')">
-
-                    ⚙ Settings
-
-                    <span>
-                        ›
-                    </span>
-
-                </button>
-
 
             </div>
 
         </main>
 
 
-        <!-- PROFILE NAVIGATION -->
-
+        <!-- Bottom Navigation -->
         <nav class="bottom-nav">
 
-
             <button
                 class="nav-item"
-                onclick="showScreen('homeScreen')">
+                onclick="goHome()">
 
-                ⌂
-
-                <span>
-                    Home
-                </span>
+                <span class="nav-icon">⌂</span>
+                <span>Home</span>
 
             </button>
 
 
+            <!-- PERSON 2 -->
             <button
                 class="nav-item"
-                onclick="alert('Person 2 will connect the Report page here.')">
+                onclick="goToReport()">
 
-                ＋
-
-                <span>
-                    Report
-                </span>
+                <span class="nav-icon">＋</span>
+                <span>Report</span>
 
             </button>
 
 
+            <!-- PERSON 3 -->
             <button
                 class="nav-item"
-                onclick="showReportsPlaceholder()">
+                onclick="goToReports()">
 
-                ▣
-
-                <span>
-                    Reports
-                </span>
+                <span class="nav-icon">▣</span>
+                <span>Reports</span>
 
             </button>
 
@@ -749,29 +304,162 @@
                 class="nav-item active"
                 onclick="showScreen('profileScreen')">
 
-                ♙
-
-                <span>
-                    Profile
-                </span>
+                <span class="nav-icon">♙</span>
+                <span>Profile</span>
 
             </button>
 
         </nav>
 
-    </section>
+    </div>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
 
-    <!-- IMPORTANT:
-         script.js must be in the SAME folder as index.html
-    -->
+    <!-- Shared localStorage functions -->
+    <script src="js/storage.js"></script>
 
-    <script src="script.js"></script>
+    <!-- Person 1 JavaScript -->
+    <script src="home.js"></script>
+
+
+    <!-- =========================
+         NAVIGATION FUNCTIONS
+    ========================== -->
+
+    <script>
+
+        /*
+         * PERSON 2 CONNECTION
+         *
+         * Home → Report Issue
+         */
+        function goToReport() {
+
+            window.location.href =
+                "person2/report.html";
+
+        }
+
+
+        /*
+         * PERSON 3 CONNECTION
+         *
+         * Home → Reports Dashboard
+         */
+        function goToReports() {
+
+            window.location.href =
+                "person3/reports.html";
+
+        }
+
+
+        /*
+         * PERSON 3 CONNECTION
+         *
+         * Home → Profile
+         */
+        function goToProfile() {
+
+            window.location.href =
+                "person3/profile.html";
+
+        }
+
+
+        /*
+         * Home button
+         */
+        function goHome() {
+
+            window.location.href =
+                "home.html";
+
+        }
+
+
+        /*
+         * Local profile screen
+         *
+         * This can remain if home.js
+         * uses showScreen().
+         */
+        function showScreen(screenId) {
+
+            const screens =
+                document.querySelectorAll(".screen");
+
+            screens.forEach(function(screen) {
+
+                screen.classList.remove("active");
+
+            });
+
+
+            const target =
+                document.getElementById(screenId);
+
+            if (target) {
+
+                target.classList.add("active");
+
+            }
+
+        }
+
+
+        /*
+         * Load the basic user information
+         * from shared localStorage.
+         */
+        function loadProfile() {
+
+            if (typeof getUser !== "function") {
+                return;
+            }
+
+
+            const user = getUser();
+
+
+            const nameElement =
+                document.getElementById("profileName");
+
+            const emailElement =
+                document.getElementById("profileEmail");
+
+
+            if (nameElement) {
+
+                nameElement.textContent =
+                    user.name || "Student";
+
+            }
+
+
+            if (emailElement) {
+
+                emailElement.textContent =
+                    user.email || "student@college.edu";
+
+            }
+
+        }
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                loadProfile();
+
+            }
+        );
+
+    </script>
 
 </body>
-
 </html>
