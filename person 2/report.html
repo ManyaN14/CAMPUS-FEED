@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Campus Feed - Report Issue</title>
+<link rel="stylesheet" href="person2.css">
+</head>
+<body>
+<div class="page">
+<header class="topbar">
+<button class="back-btn" onclick="goHome()">←</button>
+<h1>Report an Issue</h1><div></div>
+</header>
+<main class="container">
+<div class="intro">
+<div class="intro-icon">📢</div>
+<h2>What should your college work upon?</h2>
+<p>Report a problem anonymously and help your campus become better.</p>
+</div>
+<form id="issueForm">
+<label>Category</label>
+<select id="category" required>
+<option value="">Select category</option>
+<option>Infrastructure</option><option>Cleanliness</option><option>Safety</option>
+<option>Academic</option><option>Hostel</option><option>Transport</option>
+<option>Food</option><option>Wi-Fi / Technology</option><option>Other</option>
+</select>
+<label>Severity</label>
+<select id="severity" required>
+<option value="">Select severity</option>
+<option>Safety Hazard</option><option>Inconvenience</option><option>Suggestion</option>
+</select>
+<label>Location</label>
+<input id="location" required placeholder="e.g. Block C, Library, Mess">
+<label>Issue Title</label>
+<input id="title" maxlength="80" required placeholder="e.g. Water cooler not working">
+<label>Description</label>
+<textarea id="description" rows="5" maxlength="500" required placeholder="Describe the problem..."></textarea>
+<label>Add Photos <span class="optional">(optional)</span></label>
+<input id="photoInput" type="file" accept="image/*" multiple>
+<div id="photoPreview" class="photo-preview"></div>
+<div id="formError" class="error"></div>
+<button class="primary-btn" type="submit">Check for Similar Issues</button>
+</form>
+</main>
+</div>
+<script src="person2.js"></script>
+</body>
+</html>
