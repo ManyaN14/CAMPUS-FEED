@@ -1,465 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Campus Feed</title>
-
-    <!-- Shared CSS -->
-    <link rel="stylesheet" href="css/global.css">
-
-    <!-- Person 1 CSS -->
-    <link rel="stylesheet" href="home.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Campus Feed</title>
+  <link rel="stylesheet" href="../css/global.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         HOME SCREEN
-    ========================== -->
-    <div id="homeScreen" class="screen active">
+<div class="app-shell">
 
-        <!-- Header -->
-        <header class="top-header">
-            <div class="header-content">
+<header class="topbar">
 
-                <div class="logo-area">
-                    <div class="logo-icon">🎓</div>
+  <div class="container topbar-inner">
 
-                    <div>
-                        <h1>Campus Feed</h1>
-                        <p>Make your campus better</p>
-                    </div>
-                </div>
+    <a class="brand" href="home.html">
+      <span class="brand-mark">CF</span>
+      <span>Campus Feed</span>
+    </a>
 
-                <button
-                    class="profile-icon"
-                    onclick="goToProfile()"
-                    aria-label="Open profile">
-                    ♙
-                </button>
+    <nav class="nav">
+      <a class="active" href="home.html">Campus Feed</a>
+      <a href="../person2/report.html">Report Issue</a>
+      <a href="../person3/reports.html">My Reports</a>
+      <a href="../person3/monthly-report.html">Insights</a>
+    </nav>
 
-            </div>
-        </header>
+    <a class="profile-chip" href="../person3/profile.html">
+      <span class="avatar">C</span>
+      <span id="navName">CampusExplorer</span>
+    </a>
 
+  </div>
 
-        <!-- Main Content -->
-        <main class="home-content">
+</header>
 
-            <!-- Welcome -->
-            <section class="welcome-section">
-                <h2>What's happening on campus?</h2>
-                <p>
-                    Discover issues, support your classmates,
-                    and help improve campus life.
-                </p>
-            </section>
+<main class="page container">
 
+  <div class="page-head">
 
-            <!-- Search -->
-            <section class="search-section">
+    <div>
+      <span class="eyebrow">IGDTUW COMMUNITY</span>
 
-                <div class="search-box">
+      <h1>What needs attention?</h1>
 
-                    <span class="search-icon">⌕</span>
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search campus issues..."
-                        oninput="renderIssues()">
-
-                </div>
-
-            </section>
-
-
-            <!-- Filter Buttons -->
-            <section class="filter-section">
-
-                <button
-                    class="filter-btn active"
-                    onclick="filterIssues('all', this)">
-                    All
-                </button>
-
-                <button
-                    class="filter-btn"
-                    onclick="filterIssues('Infrastructure', this)">
-                    Infrastructure
-                </button>
-
-                <button
-                    class="filter-btn"
-                    onclick="filterIssues('Wi-Fi / Technology', this)">
-                    Technology
-                </button>
-
-                <button
-                    class="filter-btn"
-                    onclick="filterIssues('Safety', this)">
-                    Safety
-                </button>
-
-                <button
-                    class="filter-btn"
-                    onclick="filterIssues('Other', this)">
-                    Other
-                </button>
-
-            </section>
-
-
-            <!-- Issues -->
-            <section class="issues-section">
-
-                <div class="section-heading">
-                    <h2>Campus Issues</h2>
-
-                    <span id="issueCount">
-                        0 issues
-                    </span>
-                </div>
-
-
-                <!-- JavaScript renders issues here -->
-                <div id="issueList"></div>
-
-            </section>
-
-        </main>
-
-
-        <!-- =========================
-             BOTTOM NAVIGATION
-        ========================== -->
-        <nav class="bottom-nav">
-
-            <!-- Home -->
-            <button
-                class="nav-item active"
-                onclick="goHome()">
-
-                <span class="nav-icon">⌂</span>
-                <span>Home</span>
-
-            </button>
-
-
-            <!-- REPORT - PERSON 2 -->
-            <button
-                class="nav-item"
-                onclick="goToReport()">
-
-                <span class="nav-icon">＋</span>
-                <span>Report</span>
-
-            </button>
-
-
-            <!-- REPORTS - PERSON 3 -->
-            <button
-                class="nav-item"
-                onclick="goToReports()">
-
-                <span class="nav-icon">▣</span>
-                <span>Reports</span>
-
-            </button>
-
-
-            <!-- PROFILE - PERSON 3 -->
-            <button
-                class="nav-item"
-                onclick="goToProfile()">
-
-                <span class="nav-icon">♙</span>
-                <span>Profile</span>
-
-            </button>
-
-        </nav>
-
+      <p class="muted">
+        One place for students to raise, support
+        and track campus issues.
+      </p>
     </div>
 
-
-    <!-- =========================
-         PROFILE SCREEN
-         Optional local preview
-    ========================== -->
-    <div id="profileScreen" class="screen">
-
-        <header class="top-header">
-
-            <div class="header-content">
-
-                <div class="logo-area">
-
-                    <div class="logo-icon">
-                        🎓
-                    </div>
-
-                    <div>
-                        <h1>Campus Feed</h1>
-                        <p>Profile</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-        <main class="profile-content">
-
-            <div class="profile-card">
-
-                <div class="large-profile-icon">
-                    ♙
-                </div>
-
-                <h2 id="profileName">
-                    Student
-                </h2>
-
-                <p id="profileEmail">
-                    student@college.edu
-                </p>
-
-            </div>
-
-
-            <div class="profile-actions">
-
-                <button
-                    class="profile-action-btn"
-                    onclick="goToReports()">
-
-                    <span>▣</span>
-
-                    <div>
-                        <strong>My Reports</strong>
-                        <small>View your reports and activity</small>
-                    </div>
-
-                </button>
-
-
-                <button
-                    class="profile-action-btn"
-                    onclick="goToReport()">
-
-                    <span>＋</span>
-
-                    <div>
-                        <strong>Report an Issue</strong>
-                        <small>Tell us about a campus problem</small>
-                    </div>
-
-                </button>
-
-            </div>
-
-        </main>
-
-
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-
-            <button
-                class="nav-item"
-                onclick="goHome()">
-
-                <span class="nav-icon">⌂</span>
-                <span>Home</span>
-
-            </button>
-
-
-            <!-- PERSON 2 -->
-            <button
-                class="nav-item"
-                onclick="goToReport()">
-
-                <span class="nav-icon">＋</span>
-                <span>Report</span>
-
-            </button>
-
-
-            <!-- PERSON 3 -->
-            <button
-                class="nav-item"
-                onclick="goToReports()">
-
-                <span class="nav-icon">▣</span>
-                <span>Reports</span>
-
-            </button>
-
-
-            <button
-                class="nav-item active"
-                onclick="showScreen('profileScreen')">
-
-                <span class="nav-icon">♙</span>
-                <span>Profile</span>
-
-            </button>
-
-        </nav>
-
-    </div>
-
-
-    <!-- =========================
-         SCRIPTS
-    ========================== -->
-
-    <!-- Shared localStorage functions -->
-    <script src="js/storage.js"></script>
-
-    <!-- Person 1 JavaScript -->
-    <script src="home.js"></script>
-
-
-    <!-- =========================
-         NAVIGATION FUNCTIONS
-    ========================== -->
-
-    <script>
-
-        /*
-         * PERSON 2 CONNECTION
-         *
-         * Home → Report Issue
-         */
-        function goToReport() {
-
-            window.location.href =
-                "person2/report.html";
-
-        }
-
-
-        /*
-         * PERSON 3 CONNECTION
-         *
-         * Home → Reports Dashboard
-         */
-        function goToReports() {
-
-            window.location.href =
-                "person3/reports.html";
-
-        }
-
-
-        /*
-         * PERSON 3 CONNECTION
-         *
-         * Home → Profile
-         */
-        function goToProfile() {
-
-            window.location.href =
-                "person3/profile.html";
-
-        }
-
-
-        /*
-         * Home button
-         */
-        function goHome() {
-
-            window.location.href =
-                "home.html";
-
-        }
-
-
-        /*
-         * Local profile screen
-         *
-         * This can remain if home.js
-         * uses showScreen().
-         */
-        function showScreen(screenId) {
-
-            const screens =
-                document.querySelectorAll(".screen");
-
-            screens.forEach(function(screen) {
-
-                screen.classList.remove("active");
-
-            });
-
-
-            const target =
-                document.getElementById(screenId);
-
-            if (target) {
-
-                target.classList.add("active");
-
-            }
-
-        }
-
-
-        /*
-         * Load the basic user information
-         * from shared localStorage.
-         */
-        function loadProfile() {
-
-            if (typeof getUser !== "function") {
-                return;
-            }
-
-
-            const user = getUser();
-
-
-            const nameElement =
-                document.getElementById("profileName");
-
-            const emailElement =
-                document.getElementById("profileEmail");
-
-
-            if (nameElement) {
-
-                nameElement.textContent =
-                    user.name || "Student";
-
-            }
-
-
-            if (emailElement) {
-
-                emailElement.textContent =
-                    user.email || "student@college.edu";
-
-            }
-
-        }
-
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function() {
-
-                loadProfile();
-
-            }
-        );
-
-    </script>
+    <a
+      class="btn btn-primary"
+      href="../person2/report.html"
+    >
+      ＋ Report an issue
+    </a>
+
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+
+    <input
+      id="search"
+      class="search"
+      placeholder="Search issues, locations..."
+    >
+
+    <select id="category" class="select">
+      <option value="">All categories</option>
+      <option>Infrastructure</option>
+      <option>Safety Hazard</option>
+      <option>Cleanliness</option>
+      <option>Hostel</option>
+      <option>Water</option>
+      <option>Electricity</option>
+      <option>Mess</option>
+    </select>
+
+    <select id="status" class="select">
+      <option value="">All statuses</option>
+      <option>Active</option>
+      <option>Resolved</option>
+      <option>Community Verified</option>
+    </select>
+
+  </div>
+
+  <div id="feed" class="issue-grid"></div>
+
+</main>
+
+<footer class="footer-inner">
+  Campus Feed · Verified students · Anonymous identity · Community powered
+</footer>
+
+</div>
+
+<script src="../js/storage.js"></script>
+<script src="home.js"></script>
 
 </body>
 </html>
